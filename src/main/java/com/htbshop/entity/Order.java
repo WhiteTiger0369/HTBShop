@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,7 +35,7 @@ public class Order {
 	@JoinColumn(name = "customerId")
 	Customer customer;
 	
-	@OneToMany(mappedBy = "order",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "order")
 	List<OrderDetail> orderDetails;
 
 	public Integer getId() {

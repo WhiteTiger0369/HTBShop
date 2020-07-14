@@ -7,12 +7,14 @@ import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.htbshop.dao.OrderDetailDAO;
 import com.htbshop.entity.OrderDetail;
 
 @Transactional
+@Repository
 public class OderDetailDAOImpl implements OrderDetailDAO {
 	@Autowired
 	SessionFactory fatory;
@@ -28,7 +30,7 @@ public class OderDetailDAOImpl implements OrderDetailDAO {
 	@Override
 	public List<OrderDetail> findAll() {
 		// TODO Auto-generated method stub
-		String hql = "FROM Catygory";
+		String hql = "FROM OrderDetail";
 		Session session = fatory.getCurrentSession();
 		TypedQuery<OrderDetail> query = session.createQuery(hql, OrderDetail.class);
 		List<OrderDetail> list = query.getResultList();

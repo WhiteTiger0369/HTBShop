@@ -4,7 +4,6 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,7 +32,7 @@ public class Product {
 	Boolean available;
 //	Integer catygoryId;
 	Integer quantity;
-	String Description;
+	String description;
 	Double discount;
 	Integer viewCount;
 	Boolean special;
@@ -42,7 +41,7 @@ public class Product {
 	@JoinColumn(name = "categoryId")
 	Category category;
 	
-	@OneToMany(mappedBy = "product",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product")
 	List<OrderDetail> orderDetails;
 
 	public Integer getId() {
@@ -102,11 +101,11 @@ public class Product {
 	}
 
 	public String getDescription() {
-		return Description;
+		return description;
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.description = description;
 	}
 
 	public Double getDiscount() {

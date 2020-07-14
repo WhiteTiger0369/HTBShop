@@ -7,12 +7,14 @@ import javax.persistence.TypedQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.htbshop.dao.ProductDAO;
 import com.htbshop.entity.Product;
 
 @Transactional
+@Repository
 public class ProductDAOImpl implements ProductDAO {
 	@Autowired
 	SessionFactory fatory;
@@ -28,7 +30,7 @@ public class ProductDAOImpl implements ProductDAO {
 	@Override
 	public List<Product> findAll() {
 		// TODO Auto-generated method stub
-		String hql = "FROM Catygory";
+		String hql = "FROM Product p";
 		Session session = fatory.getCurrentSession();
 		TypedQuery<Product> query = session.createQuery(hql, Product.class);
 		List<Product> list = query.getResultList();
@@ -37,7 +39,7 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product create(Product entity) {
-		
+
 		// TODO Auto-generated method stub
 		Session session = fatory.getCurrentSession();
 		session.save(entity);
@@ -49,7 +51,7 @@ public class ProductDAOImpl implements ProductDAO {
 		// TODO Auto-generated method stub
 		Session session = fatory.getCurrentSession();
 		session.update(entity);
-		
+
 	}
 
 	@Override
@@ -60,5 +62,25 @@ public class ProductDAOImpl implements ProductDAO {
 		session.delete(entity);
 		return entity;
 	}
+	@Override
+	public List<Product> findByCategoryId(Integer categoryId) {
+		String hql = "FROM Product p WHERE p.category.id =:cid";
+		Session session = fatory.getCurrentSession();
+		TypedQuery<Product> query = session.createQuery(hql, Product.class);
+		query.setParameter("cid", categoryId);
+		List<Product> list = query.getResultList();
+		return list;
+	}
+
+	@Override
+	public List<Product> findByKeywords(String keywords) {
+		String hql = "FROM Product p " + "WHERE p.name LIKE :kw OR p.category.name LIKE :kw";
+		Session session = fatory.getCurrentSession();
+		TypedQuery<Product> query = session.createQuery(hql, Product.class);
+		query.setParameter("kw", "%"+keywords+"%");
+		List<Product> list = query.getResultList();
+		return list;
+
+	} 
 
 }

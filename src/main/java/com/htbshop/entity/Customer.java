@@ -3,7 +3,8 @@ package com.htbshop.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -11,23 +12,23 @@ import javax.persistence.Table;
 
 @Entity @Table(name="Customers")
 public class Customer {
-	@Id
-	String id;
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	Integer id;
 	String password;
 	String fullname;
 	String email;
 	String photo;
-	Boolean acitvated;
+	Boolean activated;
 	Boolean admin;
 	
-	@OneToMany(mappedBy = "customer",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "customer")
 	List<Order> orders;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -64,11 +65,11 @@ public class Customer {
 	}
 
 	public Boolean getAcitvated() {
-		return acitvated;
+		return activated;
 	}
 
 	public void setAcitvated(Boolean acitvated) {
-		this.acitvated = acitvated;
+		this.activated = acitvated;
 	}
 
 	public Boolean getAdmin() {

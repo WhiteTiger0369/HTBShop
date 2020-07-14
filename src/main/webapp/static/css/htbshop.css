@@ -1,0 +1,23 @@
+.detail-img {
+	max-width: 100%;
+	max-height: 200px ;
+}
+.detail-info li {
+	font-size: lager;
+	line-height: 30px;
+}
+.product {
+	height: 150px !important;
+	max-width: 100%;
+}
+.thumb-img {
+	width: 100px;
+	height:100px;
+	border-radius: 5px;
+	margin: 3px;
+	padding: 3px;
+	box-shadow: 0px 0px 2px blue;
+}
+.thumb-img:hover {
+	box-shadow: 0px 0px 2px red;
+}

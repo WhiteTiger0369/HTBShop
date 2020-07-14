@@ -3,7 +3,6 @@ package com.htbshop.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,9 +17,9 @@ public class Category {
 
 	Integer id;
 	String name;
-	String nameVN;
+
 	
-	@OneToMany(mappedBy = "category",fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "category")
 	List<Product> products;
 
 	public Integer getId() {
@@ -39,13 +38,6 @@ public class Category {
 		this.name = name;
 	}
 
-	public String getNameVN() {
-		return nameVN;
-	}
-
-	public void setNameVN(String nameVN) {
-		this.nameVN = nameVN;
-	}
 
 	public List<Product> getProducts() {
 		return products;
