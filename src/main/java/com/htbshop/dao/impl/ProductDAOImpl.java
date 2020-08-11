@@ -62,6 +62,7 @@ public class ProductDAOImpl implements ProductDAO {
 		session.delete(entity);
 		return entity;
 	}
+
 	@Override
 	public List<Product> findByCategoryId(Integer categoryId) {
 		String hql = "FROM Product p WHERE p.category.id =:cid";
@@ -77,10 +78,46 @@ public class ProductDAOImpl implements ProductDAO {
 		String hql = "FROM Product p " + "WHERE p.name LIKE :kw OR p.category.name LIKE :kw";
 		Session session = fatory.getCurrentSession();
 		TypedQuery<Product> query = session.createQuery(hql, Product.class);
-		query.setParameter("kw", "%"+keywords+"%");
+		query.setParameter("kw", "%" + keywords + "%");
 		List<Product> list = query.getResultList();
 		return list;
 
-	} 
+	}
+
+	@Override
+	public List<Product> findByIds(String ids) {
+		String hql = "FROM Product p WHERE p.id in (" + ids + ")";
+		System.out.println(hql);
+		Session session = fatory.getCurrentSession();
+		TypedQuery<Product> query = session.createQuery(hql, Product.class);
+		List<Product> list = query.getResultList();
+		return list;
+	}
+
+	@Override
+	public List<Product> findBySpecial(Integer id) {
+		Session session = fatory.getCurrentSession();
+		String hql = "FROM Product p";
+		TypedQuery<Product> query = session.createQuery(hql, Product.class);
+		switch (id) {
+		case 0: // moi
+			hql = "FROM Product p ORDER BY p.productDate DESC";
+			break;
+		case 1: //ban chay
+			hql = "FROM Product p ORDER BY size(p.orderDetails) DESC";
+			break;
+		case 2: //xem nhieu
+			hql = "FROM Product p ORDER BY p.viewCount DESC";
+			break;
+		case 3: //giam gia
+			hql = "FROM Product p ORDER BY p.discount DESC";
+			break;
+		}
+		query = session.createQuery(hql,Product.class);
+		query.setMaxResults(12);
+		System.out.println(hql);
+		List<Product> list = query.getResultList();
+		return list;
+	}
 
 }

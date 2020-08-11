@@ -1,14 +1,17 @@
 <%@ page pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="f"%>
+
+<c:set var="cart" value="${sessionScope['scopedTarget.cartService']}"></c:set>
 <div class="panel panel-default">
-	<div class="panel-heading">Giỏ hàng</div>
+	<div class="panel-heading glyphicon">Giỏ hàng</div>
 	<div class="panel-body">
-		<img alt="gio-hang" src="/static/images/dell_inspiron_3567.jpg" class="col-sm-5">
+		<img id="cart-img" alt="gio-hang" src="/static/images/dell_inspiron_3567.jpg" class="col-sm-5">
 		<ul class="col-sm-7">
-			<li>10 mặt hàng</li>
-			<li>150 ngàn</li>
+			<li><b id="cart-cnt">${cart.count}</b> mặt hàng</li>
+			<li><b id ="cart-amt"><f:formatNumber value="${cart.amount}" pattern="#,###.00" /></b>VND</li>
 			<li>
-				<a href="">Xem giỏ hàng</a>
+				<a href="/cart/view">Xem giỏ hàng</a>
 			</li>
 		
 		</ul>
@@ -38,9 +41,13 @@
 <div class="panel panel-default">
 	<div class="panel-heading">ĐẶT BIỆT</div>
 	<div class="list-group">
-		<a href="#" class="list-group-item">Hàng mới</a> 
-		<a href="#" class="list-group-item">Bán chạy</a> 
-		<a href="#"	class="list-group-item">Yêu thích</a>
-		<a href="#" class="list-group-item">Giảm giá</a>
+		<a href="/product/list-by-special/0" class="list-group-item">Hàng mới</a> 
+		<a href="/product/list-by-special/1" class="list-group-item">Bán chạy</a> 
+		<a href="/product/list-by-special/2"	class="list-group-item">Xem nhiều</a>
+		<a href="/product/list-by-special/3" class="list-group-item">Giảm giá</a>
 	</div>
 </div>
+
+<style id="cart-css">
+	
+</style>

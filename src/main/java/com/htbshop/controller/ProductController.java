@@ -39,12 +39,41 @@ public class ProductController {
 		return "product/list";
 		
 	}
+	
+	@RequestMapping("/product/list-by-special/{id}")
+	public String listBySpecial(Model model, @PathVariable("id") Integer id) {
+		List<Product> list = pdao.findBySpecial(id);
+		model.addAttribute("list", list);
+		return "product/list";
+		
+	}
 	@RequestMapping("/product/detail/{id}")
 	public String detail(Model model, @PathVariable("id") Integer id) {
 		Product p = pdao.findById(id);
-		List<Product> list = pdao.findByCategoryId(p.getCategory().getId());
 		model.addAttribute("p", p);
+		
+		//dem so lan xem
+		p.setViewCount(p.getViewCount() +1);
+		List<Product> list = pdao.findByCategoryId(p.getCategory().getId());
 		model.addAttribute("list", list);
+		
+		//hang yeu thich
+		Cookie favo = cookie.read("favo");
+		if(favo !=null) {
+			String ids = favo.getValue();
+			List<Product> favo_list = pdao.findByIds(ids);
+			model.addAttribute("favo", favo_list);
+		}
+		//hang da xem
+		Cookie viewed = cookie.read("viewed"); //lay cookie tu client
+		String value =id.toString();
+		if(viewed != null) {
+			value = viewed.getValue();
+			value += "," +id.toString();
+		}
+		cookie.create("viewed", value, 10);
+		List<Product> viewed_list = pdao.findByIds(value);
+		model.addAttribute("viewed", viewed_list);
 		return "product/detail";
 		
 	}

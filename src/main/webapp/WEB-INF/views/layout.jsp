@@ -26,9 +26,10 @@
 
 			</aside>
 		</div>
-		<footer>
+	<footer>
 			<p class="text-center">&copy;2020 by Huynh The Bao</p>
-		</footer>
+	</footer>
+		
 	</div>
 
 </body>
