@@ -1,5 +1,6 @@
 package com.htbshop.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +13,7 @@ import javax.persistence.Table;
 @Entity @Table(name="OrderDetails")
 public class OrderDetail {
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id")
 	Integer id;
 //	Integer oderId;
 //	Integer productId;

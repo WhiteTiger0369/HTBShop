@@ -6,7 +6,7 @@
 	<div class="col-sm-4 product">
 		<div class="thumbnail">
 			<a href="/product/detail/${p.id}"> 
-			<img class="img_product" src="/static/images/${p.image}">
+			<img class="img_product" src="/static/images/products/${p.image}">
 			</a>
 			<div class="caption" >
 				<p>${p.name}</p>

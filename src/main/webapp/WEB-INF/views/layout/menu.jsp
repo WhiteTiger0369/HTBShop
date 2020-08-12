@@ -28,6 +28,7 @@
 							<li><a href="/account/change">Đổi mật khẩu</a></li>
 							<li><a href="/account/logout">Đăng xuất</a></li>
 							<li><a href="/order/list">Đơn hàng</a></li>
+							<li><a href="/order/items">Hàng đã mua</a></li>
 
 						</ul>
 					</c:otherwise>

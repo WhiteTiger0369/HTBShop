@@ -5,7 +5,7 @@
 
 <div class="row">
 	<div class="col-sm-5 text-center">
-		<img class="detail-img" src="/static/images/${p.image}">
+		<img class="detail-img" src="/static/images/products/${p.image}">
 	</div>
 	<div class="col-sm-7">
 		<ul class="detail-info">

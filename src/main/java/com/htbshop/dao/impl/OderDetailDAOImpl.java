@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.htbshop.dao.OrderDetailDAO;
+import com.htbshop.entity.Order;
 import com.htbshop.entity.OrderDetail;
 
 @Transactional
@@ -61,6 +62,17 @@ public class OderDetailDAOImpl implements OrderDetailDAO {
 		OrderDetail entity = session.find(OrderDetail.class, id);
 		session.delete(entity);
 		return entity;
+	}
+
+	@Override
+	public List<OrderDetail> findByOrder(Order order) {
+		// TODO Auto-generated method stub
+		String hql = "FROM OrderDetail d WHERE d.order.id=:oid";
+		Session session = fatory.getCurrentSession();
+		TypedQuery<OrderDetail> query = session.createQuery(hql, OrderDetail.class);
+		query.setParameter("oid", order.getId());
+		List<OrderDetail> list = query.getResultList();
+		return list;
 	}
 
 }

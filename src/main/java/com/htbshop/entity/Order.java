@@ -3,6 +3,7 @@ package com.htbshop.entity;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class Order {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-
+	@Column(name="id")
 	Integer id;
 //	String customerId;
 	@Temporal(TemporalType.DATE)
