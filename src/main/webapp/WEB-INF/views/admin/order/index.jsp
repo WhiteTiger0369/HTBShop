@@ -2,7 +2,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 
-<h2 class="alert alert-warning">Quản lí danh mục</h2>
+<h2 class="alert alert-warning">Quản lí đơn hàng</h2>
 <h4 class="table table-success">${msg}${param.msg}</h4>
 <c:set var="base" value="/admin/order" scope="request" />
 

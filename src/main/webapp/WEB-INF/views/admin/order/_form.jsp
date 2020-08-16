@@ -14,7 +14,7 @@
 			</div>
 			<div class="form-group">
 				<label>Ngày đặt hàng</label>
-				<form:input path="orderDate" class="form-control" />
+				<form:input path="orderDate" id="datepicker" class="form-control" />
 			</div>
 			<div class="form-group">
 				<label>Địa chỉ</label>
@@ -41,3 +41,11 @@
 
 	</div>
 </div>
+<script type="text/javascript">
+
+	//datepiker
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+</script>
+
